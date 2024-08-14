@@ -65,19 +65,27 @@ const TotalStyles = {
   MainContentTableContainer: 'overflow-x-auto',
   MainContentTable: 'min-w-full bg-white',
   MainContentThead: '',
+  // MainContentTh:
+  //   'relative px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600',
+
   MainContentTh:
-    'relative px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600',
+    'relative px-4 py-2 border-b-2 border-gray-200 bg-gray-100 text-left text-sm font-semibold text-gray-600 w-32', // 열 너비 128px 고정 (수정 300)
+
   MainContentDeleteColumnButton:
     'absolute top-1/2 right-1 transform -translate-y-1/2 bg-red-500 text-white text-sm rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600',
   MainContentTbody: '',
   MainContentTr: 'hover:bg-gray-100',
+  // MainContentTd:
+  //   'relative px-4 py-2 border-b border-gray-200 text-sm text-gray-700',
+
   MainContentTd:
-    'relative px-4 py-2 border-b border-gray-200 text-sm text-gray-700',
+    'relative px-4 py-2 border-b border-gray-200 text-sm text-gray-700 w-30', // 열 너비 128px 고정 (수정 300)
+
   MainContentDeleteRowButton:
     'absolute left-0 top-1/2 transform -translate-y-1/2 bg-red-500 text-white text-sm rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600',
   MainContentErrorText: 'text-red-500 text-xs mt-1',
-  MainContentTableWrapper: 'min-w-full overflow-x-auto',
-  MainContentInputWide: 'w-32 px-2 py-1 border rounded',
+  MainContentTableWrapper: ' overflow-x-auto', // (수정 700)
+  MainContentInputWide: 'w-32 px-2 py-1 border rounded', // 인풋 너비 128px로 고정 (수정 300)
 
   // Header Styles
   Header:
@@ -128,13 +136,13 @@ const TotalStyles = {
   ToggleSubmit:
     'bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300',
   ToggleTableContainer:
-    'items-start justify-start min-w-full overflow-x-auto  max-h-[32rem] ', // (수정 25)
-  ToggleTable: 'min-w-full   divide-y divide-gray-200 overflow-x-auto', // (수정 25)
-  // (수정 40) 가로 스크롤을 위한 스타일 추가
-  scrollable: 'overflow-x-auto',
+    'items-start justify-start min-w-full overflow-x-auto  max-h-[32rem]', // 스크롤바 추가 (수정 300)
+  ToggleTable: 'min-w-full divide-y divide-gray-200 ', // 스크롤바 추가 (수정 300)
+  scrollable: 'overflow-x-auto' /* 추가: 스크롤을 활성화 */,
+  noScrollable: 'overflow-x-hidden;' /* 추가: 스크롤을 비활성화 */,
   ToggleTableHead: 'bg-gray-50',
   ToggleTableHeaderCell:
-    'min-w-32 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider',
+    'min-w-[200px] px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider', // 수정된 속성 셀의 크기를 1개당 200px 로 지정
   ToggleTableBody: 'bg-white divide-y divide-gray-200',
   ToggleTableDataCell:
     'min-w-32 px-6 py-4 whitespace-nowrap text-sm text-gray-500',
@@ -142,6 +150,7 @@ const TotalStyles = {
   ToggleSelect:
     'px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500',
   ToggleSelectContainer: 'space-y-4', // selectContainer 속성을 추가합니다.
+  ToggleTableWrapper: ' overflow-x-auto', // 추가된 속성
 
   //Sum Styles
   SumContainer: 'fixed bottom-0 left-0 right-0 p-4', // 배경색 제거
