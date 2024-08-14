@@ -26,9 +26,8 @@ export default function ToggleSection({
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [isFormOpen, setIsFormOpen] = useState<boolean>(true);
   const [tableClass, setTableClass] = useState<string>(
-    `${TotalStyles.ToggleTableContainer} overflow-x-hidden`, // (수정 22)
+    `${TotalStyles.ToggleTableContainer} overflow-x-hidden`, // (수정 800)
   );
-
   useEffect(() => {
     const fetchTables = async () => {
       try {
@@ -45,14 +44,6 @@ export default function ToggleSection({
     };
     fetchTables();
   }, []);
-
-  useEffect(() => {
-    if (data.length > 0 && Object.keys(data[0]).length >= 9) {
-      setTableClass(`${TotalStyles.ToggleTableContainer} overflow-x-auto`); // (수정 22)
-    } else {
-      setTableClass(`${TotalStyles.ToggleTableContainer} overflow-x-hidden`); // (수정 22)
-    }
-  }, [data]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -83,6 +74,21 @@ export default function ToggleSection({
     }
   };
 
+  useEffect(() => {
+    // 열 수에 따라 테이블 클래스 업데이트 (수정 800)
+    const columnCount = data.length > 0 ? Object.keys(data[0]).length : 0;
+    if (columnCount >= 8) {
+      // 열 수가 8개 이상일 때 스크롤 추가
+      setTableClass(
+        `${TotalStyles.ToggleTableContainer} ${TotalStyles.scrollable}`,
+      ); // (수정 800)
+    } else {
+      setTableClass(
+        `${TotalStyles.ToggleTableContainer} ${TotalStyles.noScrollable}`,
+      ); // (수정 800)
+    }
+  }, [data, tableClass]); // tableClass 포함
+
   const toggleForm = () => {
     setIsFormOpen(!isFormOpen);
   };
@@ -104,7 +110,8 @@ export default function ToggleSection({
       )}
       <ToggleButton isOpen={isFormOpen} onClick={toggleForm} />
 
-      <div className={`${TotalStyles.ToggleTableContainer}`}>
+      <div className={`${TotalStyles.ToggleTableWrapper} ${tableClass}`}>
+        {/* (수정 800) */}
         <DataTable data={data} />
       </div>
     </div>
